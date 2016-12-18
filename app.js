@@ -11,7 +11,8 @@ var session = require('express-session');
 var redis   = require("redis");
 var redisStore = require('connect-redis')(session);
 var redisClient = redis.createClient();
-var pool = require('./db/connection')
+var passport = require('passport');
+var pool = require('./db/connection');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
