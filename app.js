@@ -8,7 +8,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var redis   = require("redis");
+var redis = require("redis");
 var RedisStore = require('connect-redis')(session);
 var redisClient = redis.createClient();
 var passport = require('passport');
@@ -40,8 +40,11 @@ app.use(session({
   }),
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: false, 
+  saveUninitialized: false,
 }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(function (req, res, next) {
   if (!req.session) {
     return next(new Error('Session has been lost'))
