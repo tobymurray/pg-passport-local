@@ -12,6 +12,7 @@ var redis   = require("redis");
 var RedisStore = require('connect-redis')(session);
 var redisClient = redis.createClient();
 var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 var pool = require('./db/connection');
 
 var index = require('./routes/index');
