@@ -9,7 +9,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var redis   = require("redis");
-var redisStore = require('connect-redis')(session);
+var RedisStore = require('connect-redis')(session);
 var redisClient = redis.createClient();
 var passport = require('passport');
 var pool = require('./db/connection');
@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-  store: new redisStore({
+  store: new RedisStore({
     host: process.env.REDIS_HOST,
     port: process.env.REDIS_PORT,
     client: redisClient,
